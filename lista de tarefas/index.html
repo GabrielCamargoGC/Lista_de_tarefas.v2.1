@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakai Tasks</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container"> 
+        <header>
+            <div class="header-top">
+                <h1>Tasks</h1>
+                <div id="live-clock" class="live-clock">00:00:00</div>
+            </div>
+            <p>Organize suas missões.</p>
+            <div class="header-actions">
+                <button id="toggle-calendar-btn">Calendário</button>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            
+            <div class="main-column">
+                <div class="calendar-module">
+                    <h2>Eventos</h2>
+                    <button class="close-calendar-btn"><i class="fas fa-times"></i></button>
+                    <div class="add-event-form">
+                        <input type="text" id="event-title-input" placeholder="Título do Evento">
+                        <input type="date" id="event-date-input">
+                        <button id="add-event-btn">Adicionar Evento</button>
+                    </div>
+                    <div id='calendar'></div>
+                </div>
+
+                <div class="input-container">
+                    <input type="text" id="task-input" placeholder="Nova diretiva...">
+                    <select id="category-select">
+                        <option value="pessoal">Pessoal</option>
+                        <option value="trabalho">Trabalho</option>
+                        <option value="estudo">Estudo</option>
+                    </select>
+                    <button id="add-task-btn"><i class="fas fa-plus"></i></button>
+                </div>
+        
+                <div class="filter-container">
+                    <button class="filter-btn active" data-category="all">Todas</button>
+                    <button class="filter-btn" data-category="pessoal">Pessoal</button>
+                    <button class="filter-btn" data-category="trabalho">Trabalho</button>
+                    <button class="filter-btn" data-category="estudo">Estudo</button>
+                </div>
+        
+                <ul id="task-list"></ul>
+
+                <div class="completed-tasks-container">
+                    <button id="toggle-completed-btn">
+                        Ver Tarefas Concluídas <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul id="completed-task-list" class="hidden"></ul>
+                </div>
+            </div>
+            
+            <div class="side-column">
+
+                <div class="progress-dashboard">
+                    <div class="progress-header">
+                        <h2>Produtividade Semanal</h2>
+                    </div>
+                
+                    <div class="segmented-progress-bar-wrapper">
+                        <div class="segmented-progress-bar">
+                            <div id="pessoal-segment" class="progress-segment pessoal"></div>
+                            <div id="trabalho-segment" class="progress-segment trabalho"></div>
+                            <div id="estudo-segment" class="progress-segment estudo"></div>
+                        </div>
+                        <p id="total-completed-tasks">0 de 0 Concluídas</p>
+                    </div>
+                
+                    <div class="progress-legend">
+                        <div class="legend-column">
+                            <span class="legend-item pessoal"><span class="legend-color"></span>Pessoal: <strong id="pessoal-stats">0% (0)</strong></span>
+                            <span class="legend-item trabalho"><span class="legend-color"></span>Trabalho: <strong id="trabalho-stats">0% (0)</strong></span>
+                        </div>
+                        <div class="legend-column">
+                            <span class="legend-item estudo"><span class="legend-color"></span>Estudo: <strong id="estudo-stats">0% (0)</strong></span>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="pomodoro-container">
+                    <div class="pomodoro-header">
+                        <h2>Foco / Pausa</h2>
+                    </div>
+                    <div class="pomodoro-settings">
+                        <div>
+                            <label for="work-time-input">Foco (min):</label>
+                            <input type="number" id="work-time-input" value="25">
+                        </div>
+                        <div>
+                            <label for="break-time-input">Pausa (min):</label>
+                            <input type="number" id="break-time-input" value="5">
+                        </div>
+                        <button id="pomodoro-settings-btn">Salvar</button>
+                    </div>
+                    <p id="pomodoro-state">Pronto para começar?</p>
+                    <div id="pomodoro-timer" class="pomodoro-timer">25:00</div>
+                    <div class="pomodoro-controls">
+                        <button id="pomodoro-start"><i class="fas fa-play"></i></button>
+                        <button id="pomodoro-pause"><i class="fas fa-pause"></i></button>
+                        <button id="pomodoro-reset"><i class="fas fa-sync-alt"></i></button>
+                    </div>
+                </div>
+            
+            </div>
+
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
